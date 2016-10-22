@@ -1,12 +1,8 @@
-var Copterface = require('./lib/copterface');
+var ImageProcessing = require('./lib/ImageProcessing');
 var arDrone = require('ar-drone');
 var client = arDrone.createClient({ip: '192.168.1.10'});
-//client.disableEmergency()
-client.takeoff();
 console.log('Connected to client');
 var pngStream = client.getPngStream();
-console.log('Getting png stream');
-
 var Controller   = require('node-pid-controller');
 
 var ver_ctrl = new Controller(0.3, 0.01, 0.1)
@@ -14,7 +10,9 @@ var ver_ctrl = new Controller(0.3, 0.01, 0.1)
   , front_ctrl = new Controller(0.1, 0.01, 0.2)
   ;
 
-var copterface = Copterface(pngStream, function(info){
+client.takeoff();
+
+var imageProcessing = ImageProcessing(pngStream, function(info){
 	console.log(info);
 	var face = info.rects;
 	var im = info.image;
@@ -56,7 +54,6 @@ var copterface = Copterface(pngStream, function(info){
 		client.stop();
 	}
 
-	// to determine how much time the drone will move, we use the lower of the changes [-1,1], and multiply by a reference time.
 	dt = Math.min(Math.abs(turnAmount), Math.abs(heightAmount));
 	dt = dt * 2000;
 });
@@ -86,4 +83,4 @@ process.on("uncaughtException", function(){
 	}, 1000);
 });
 
-copterface.start();
+imageProcessing.start();

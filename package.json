@@ -1,21 +1,21 @@
 {
   "name": "CoordinatedControl",
   "version": "0.2.0",
-  "description": "",
+  "description": "Object detection and tracking with parrot ar drone",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "github.com/nikv96/CoordinatedControl"
+    "url": "github.com/CoordinatedControl/CoordinatedControl"
   },
   "author": "Nikhil Venkatesh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nikv96/CoordinatedControl/issues"
+    "url": "https://github.com/CoordinatedControl/CoordinatedControl/issues"
   },
-  "homepage": "https://github.com/nikv96/CoordinatedControl#readme",
+  "homepage": "https://github.com/CoordinatedControl/CoordinatedControl#readme",
   "dependencies": {
     "ar-drone": "^0.3.3",
     "express": "^4.13.3",
